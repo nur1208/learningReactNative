@@ -7,12 +7,12 @@ export const Landing = ({ navigation }) => {
       <Text />
       <Button
         title="Register"
-        onPress={() => navigation.naviage("Register")}
+        onPress={() => navigation.navigate("Register")}
       />
 
       <Button
         title="Login"
-        onPress={() => navigation.naviage("Login")}
+        onPress={() => navigation.navigate("Login")}
       />
     </View>
   );

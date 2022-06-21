@@ -2,21 +2,15 @@ import React, { useState } from "react";
 import { TextInput, View, Button } from "react-native";
 import firebase from "firebase";
 
-export const Register = () => {
-  const [name, setName] = useState("");
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUP = () => {
+  const handleLogin = () => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(firebase.auth().currentUser.uid)
-          .set({ name, email });
         console.log({ result });
       })
       .catch((error) => {
@@ -27,10 +21,6 @@ export const Register = () => {
   return (
     <View>
       <TextInput
-        placeholder="name"
-        onChangeText={(name) => setName(name)}
-      />
-      <TextInput
         placeholder="eamil"
         onChangeText={(email) => setEmail(email)}
       />
@@ -40,7 +30,7 @@ export const Register = () => {
         onChangeText={(password) => setPassword(password)}
       />
 
-      <Button title="Sign Up" onPress={() => handleSignUP()} />
+      <Button title="Sign In" onPress={() => handleLogin()} />
     </View>
   );
 };
